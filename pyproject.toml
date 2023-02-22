@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "jims-aws-toolkit"
+version = "0.0.1"
+description = "Jims AWS Toolkit"
+authors = ["Jim Alcock <me@jimalcock.dev>"]
+license = "MIT"
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.92.0"
+streamlit = "^1.18.1"
+boto3 = "^1.26.75"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".", "lambdas"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
