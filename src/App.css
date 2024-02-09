@@ -15,4 +15,5 @@ button.fileTab {
   color: white;
   float: right;
   font-weight: bold;
+  cursor: pointer;
 };

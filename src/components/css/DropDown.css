@@ -3,6 +3,7 @@ select {
     background-color: hsl(0, 1%, 29%) ;
     color: white;
     font-weight: bold;
+    cursor: pointer;
 }
 
 select.LangDropDown {
