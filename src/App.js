@@ -46,7 +46,6 @@ async function updateEncryptedData(id, ttl=60) {
       }
     });
     const response = await restOperation.response;
-    console.log('GET call succeeded: ', response);
   } catch (error) {
     console.log('GET call failed: ', error);
   }
@@ -73,7 +72,6 @@ async function deleteEncryptedData(id) {
       path: '/encrypted-data/' + id
     });
     const response = await restOperation.response;
-    console.log('GET call succeeded: ', response);
   } catch (error) {
     console.log('GET call failed: ', error);
   }
@@ -85,9 +83,19 @@ function App() {
     async function fetchData() {
       const itemCreds = checkHref()
       if (itemCreds.id) {
-        let data = await readEncryptedData(itemCreds.id)
-        let decryptedData = decrypt(data.data.Item, itemCreds.password)
-        setText(decryptedData)
+        try {
+          let data = await readEncryptedData(itemCreds.id)
+          let item = data.data.Item
+          let decryptedData = decrypt(item, itemCreds.password)
+          setText(decryptedData)
+          let now = Math.floor(Date.now() / 1000)
+          let expirationDate = Number(item['expiration-date'].N)
+          if (now > expirationDate) {
+            deleteEncryptedData(itemCreds.id)
+          }
+        } catch (error) {
+          setText('')
+        }
       }
     }
     fetchData()
