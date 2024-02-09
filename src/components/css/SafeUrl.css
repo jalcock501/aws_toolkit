@@ -16,6 +16,8 @@
     padding: 32px;
     width: 100%;
     max-width: 640px;
+    font-family: monospace;
+    font-size: 14px;
 }
 
 .popup-inner .close-btn {
