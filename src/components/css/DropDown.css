@@ -1,0 +1,11 @@
+select {
+    border: none;
+    background-color: hsl(0, 1%, 29%) ;
+    color: white;
+    font-weight: bold;
+}
+
+select.LangDropDown {
+    margin-right: 5px;
+    margin-top: 0.2%;
+}

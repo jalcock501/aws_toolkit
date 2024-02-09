@@ -1,0 +1,21 @@
+#placeholder {
+    color: white;
+    white-space: pre-wrap;
+    font-family: monospace;
+    color: #bc856e;
+}
+
+.topleft {
+    position: absolute;
+    top: 1rem;
+    left: 5em;
+    font-size: 15px;
+}
+
+.placeholderVisible {
+    display: block;
+}
+
+.placeholderHidden {
+    display: none;
+}

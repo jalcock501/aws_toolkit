@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/encrypted-data": {
+      "name": "/encrypted-data",
+      "lambdaFunction": "awstoolkitapi",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

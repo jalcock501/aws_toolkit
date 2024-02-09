@@ -1,0 +1,10 @@
+{
+  "resourceName": "awstoolkitDB",
+  "tableName": "EncryptedDataStore",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

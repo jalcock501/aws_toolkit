@@ -1,0 +1,1 @@
+{ "httpMethod": "POST" , "path": "/encrypted-data", "queryStringParameters":{} , "body": {"encrypted-data": "eyJ0ZXN0IjoiYm9vayJ9", "expiration-date": "1707317747"}}
