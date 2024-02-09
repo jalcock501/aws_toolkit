@@ -86,7 +86,6 @@ function App() {
       const itemCreds = checkHref()
       if (itemCreds.id) {
         let data = await readEncryptedData(itemCreds.id)
-        console.log(data)
         let decryptedData = decrypt(data.data.Item, itemCreds.password)
         setText(decryptedData)
       }
@@ -111,9 +110,7 @@ function App() {
 
   async function encryptAndSend() {
     let data=editorRef.current.getValue()
-    console.log(data)
     let encryptedData = encrypt(data);
-    console.log(encryptedData)
     let dataId = await createEncryptedData(
       encryptedData.crypt, encryptedData.hash, TTL
     )
