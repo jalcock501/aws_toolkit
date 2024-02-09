@@ -5,6 +5,7 @@ import { LangDropDown } from './components/LangDropDown';
 import { TTLDropDown } from './components/TTLDropDown';
 import { encrypt, decrypt } from './utils/encrypt';
 import { SafeUrl } from './components/SafeUrl';
+import ClipLoader from "react-spinners/ClipLoader";
 import './App.css';
 
 
@@ -110,20 +111,23 @@ function App() {
     return {id, password}
   }
 
-  const [selectedLanguage, setSelectedLanguage] = useState('python');
-  const [text, setText] = useState('')
   const [TTL, setTTL] = useState(0)
   const [buttonPopup, setButtonPopup] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [safeUrl, setSafeUrl] = useState('')
+  const [text, setText] = useState('')
+  const [selectedLanguage, setSelectedLanguage] = useState('python');
 
   async function encryptAndSend() {
+    setLoading(true)
+    setButtonPopup(true)
     let data=editorRef.current.getValue()
     let encryptedData = encrypt(data);
     let dataId = await createEncryptedData(
       encryptedData.crypt, encryptedData.hash, TTL
     )
     setSafeUrl([window.location.origin, dataId.message, encryptedData.encoded].join('/'))
-    setButtonPopup(true)
+    setLoading(false)
   }
 
   const handleLangDropDownChange = (e) => {
@@ -147,7 +151,11 @@ function App() {
       <button className="fileTab" onClick={() => encryptAndSend()}>Encrypt and Save</button>
       <CodeEditor language={selectedLanguage} onMount={handleEditorDidMount} text={text}/>
     </main>
-    <SafeUrl trigger={buttonPopup} setTrigger={setButtonPopup} safeUrl={safeUrl}><p>{safeUrl}</p></SafeUrl>
+    {!loading ?
+    <SafeUrl trigger={buttonPopup} setTrigger={setButtonPopup} safeUrl={safeUrl}><p>{safeUrl}</p></SafeUrl> :
+    <SafeUrl trigger={buttonPopup} setTrigger={setButtonPopup} safeUrl="">
+      <ClipLoader className="loader" loading={loading} color='white'/>
+    </SafeUrl>}
   </div>;
   
 }
