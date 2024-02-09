@@ -35,16 +35,13 @@ export const encrypt = (text) => {
 }
 
 export const decrypt = (data, key) => {
-    console.log(data, key)
     const decodedKey = Buffer.from(key, 'hex').toString('utf-8');
     if (bcrypt.compareSync(decodedKey, data['encryption-key-hash'].S)) {
-        console.log(data['encrypted-data'].S)
         const decrypted = CryptoJS.AES.decrypt(data['encrypted-data'].S, decodedKey);
         if (decrypted) {
             try {
                 const str = decrypted.toString(CryptoJS.enc.Utf8);
                 if (str) {
-                    console.log(str)
                     return str;
                 }
                 else {
