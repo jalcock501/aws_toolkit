@@ -98,6 +98,7 @@ function App() {
           }
         } catch (error) {
           setText('')
+          setLoading(false)
         }
       }
     }
