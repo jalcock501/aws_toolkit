@@ -85,10 +85,12 @@ function App() {
       const itemCreds = checkHref()
       if (itemCreds.id) {
         try {
+          setLoading(true)
           let data = await readEncryptedData(itemCreds.id)
           let item = data.data.Item
           let decryptedData = decrypt(item, itemCreds.password)
           setText(decryptedData)
+          setLoading(false)
           let now = Math.floor(Date.now() / 1000)
           let expirationDate = Number(item['expiration-date'].N)
           if (now > expirationDate) {
@@ -149,7 +151,7 @@ function App() {
       <LangDropDown onChange={handleLangDropDownChange} />
       <TTLDropDown onChange={handleTTLDropDownChange} />
       <button className="fileTab" onClick={() => encryptAndSend()}>Encrypt and Save</button>
-      <CodeEditor language={selectedLanguage} onMount={handleEditorDidMount} text={text}/>
+      <CodeEditor language={selectedLanguage} onMount={handleEditorDidMount} text={text} loading={loading}/>
     </main>
     {!loading ?
     <SafeUrl trigger={buttonPopup} setTrigger={setButtonPopup} safeUrl={safeUrl}><p>{safeUrl}</p></SafeUrl> :

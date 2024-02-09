@@ -27,7 +27,7 @@ const welcomeMessage =`"""
     The data will be encrypted using the selected language.
 """`
 
-export const CodeEditor = ({language, onMount, text=''}) => {
+export const CodeEditor = ({language, onMount, text='', loading=false}) => {
 
     useEffect(() => {
         if (text) {
@@ -57,7 +57,7 @@ export const CodeEditor = ({language, onMount, text=''}) => {
             minimap: { enabled: true }
         }}
         />
-        <p id="placeholder" className="topleft">{welcomeMessage}</p>
+        <p id="placeholder" className="topleft">{!loading ? welcomeMessage : "loading..."}</p> 
         </div>
     );
 };
