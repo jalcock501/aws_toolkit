@@ -118,7 +118,7 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [safeUrl, setSafeUrl] = useState('')
   const [text, setText] = useState('')
-  const [selectedLanguage, setSelectedLanguage] = useState('python');
+  const [selectedLanguage, setSelectedLanguage] = useState('plaintext');
 
   async function encryptAndSend() {
     setLoading(true)
