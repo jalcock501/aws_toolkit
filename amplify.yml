@@ -5,7 +5,7 @@ backend:
       commands:
         - update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 11 
         - wget https://bootstrap.pypa.io/get-pip.py
-        - /usr/local/bin/python3.12 ./get-pip.py
+        - /usr/bin/python3 ./get-pip.py
         - /usr/local/bin/pip3 install --user pipenv
         - amplifyPush --simple
 frontend:
